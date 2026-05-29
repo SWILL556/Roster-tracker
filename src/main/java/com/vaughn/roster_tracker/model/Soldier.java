@@ -25,14 +25,14 @@ public class Soldier {
     public void setId(Long id) {this.id = id;}
 
     public String getFirstName() {return firstName;}
-    public void setFirstName(String firstName) {this.firstName = this.firstName;}
+    public void setFirstName(String firstName) {this.firstName = firstName;}
 
     public String getLastName() {return lastName;}
-    public void setLastName(String lastName) {this.lastName = this.lastName;}
+    public void setLastName(String lastName) {this.lastName = lastName;}
 
     public String getRank() {return rank;}
     public void setRank(String rank) {this.rank = rank;}
 
     public String getMos() {return mos;}
-    public void setMos(String mos) {this.mos = this.mos;}
+    public void setMos(String mos) {this.mos = mos;}
 }

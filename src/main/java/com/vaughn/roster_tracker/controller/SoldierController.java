@@ -2,6 +2,8 @@ package com.vaughn.roster_tracker.controller;
 
 import com.vaughn.roster_tracker.model.Soldier;
 import com.vaughn.roster_tracker.service.SoldierService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,22 +23,36 @@ public class SoldierController {
     }
 
     @GetMapping("/soldiers/{id}")
-    public Soldier getSoldier(@PathVariable Long id) {
-        return service.getSoldierById(id);
+    public ResponseEntity<Soldier> getSoldier(@PathVariable Long id) {
+        Soldier soldier = service.getSoldierById(id);
+        if (soldier == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(soldier);
     }
 
     @PostMapping("/soldiers")
-    public Soldier addSoldier(@RequestBody Soldier soldier) {
-        return service.addSoldier(soldier);
+    public ResponseEntity<Soldier> addSoldier(@RequestBody Soldier soldier) {
+        soldier = service.addSoldier(soldier);
+        return ResponseEntity.status(HttpStatus.CREATED).body(soldier);
     }
 
     @PutMapping("/soldiers/{id}")
-    public Soldier updateSoldier(@PathVariable Long id, @RequestBody Soldier soldier) {
-        return service.updateSoldier(id, soldier);
+    public ResponseEntity<Soldier> updateSoldier(@PathVariable Long id, @RequestBody Soldier soldier) {
+        soldier = service.updateSoldier(id, soldier);
+        if (soldier == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(soldier);
     }
 
     @DeleteMapping("/soldiers/{id}")
-    public void deleteSoldier(@PathVariable Long id) {
-        service.deleteSoldier(id);
+    public ResponseEntity<Void> deleteSoldier(@PathVariable Long id) {
+        boolean removed = service.deleteSoldier(id);
+
+        if (!removed) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
     }
 }
