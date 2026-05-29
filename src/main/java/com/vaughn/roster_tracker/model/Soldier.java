@@ -21,18 +21,18 @@ public class Soldier {
     }
 
     // Getters and setters
-    public long getId() {return id;}
+    public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
 
     public String getFirstName() {return firstName;}
-    public void setFirstName() {this.firstName = firstName;}
+    public void setFirstName(String firstName) {this.firstName = this.firstName;}
 
     public String getLastName() {return lastName;}
-    public void setLastName() {this.lastName = lastName;}
+    public void setLastName(String lastName) {this.lastName = this.lastName;}
 
     public String getRank() {return rank;}
-    public void setRank() {this.rank = rank;}
+    public void setRank(String rank) {this.rank = rank;}
 
     public String getMos() {return mos;}
-    public void setMos() {this.mos = mos;}
+    public void setMos(String mos) {this.mos = this.mos;}
 }
