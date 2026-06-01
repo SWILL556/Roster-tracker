@@ -1,10 +1,25 @@
 package com.vaughn.roster_tracker.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "soldiers")
 public class Soldier {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+
+    @Column(name = "last_name", nullable = false)
     private String lastName;
+
+    @Column(name = "soldier_rank", nullable = false)
     private String rank;
+
+    @Column(nullable = false)
     private String mos;
 
     // no-arg constructor required by some spring/JSON tools
