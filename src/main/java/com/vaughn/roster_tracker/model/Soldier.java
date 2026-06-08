@@ -22,6 +22,11 @@ public class Soldier {
     @Column(nullable = false)
     private String mos;
 
+    // Field for the platoon
+    @ManyToOne
+    @JoinColumn(name = "platoon_id")
+    private Platoon platoon;
+
     // no-arg constructor required by some spring/JSON tools
     public Soldier() {
 
@@ -50,4 +55,8 @@ public class Soldier {
 
     public String getMos() {return mos;}
     public void setMos(String mos) {this.mos = mos;}
+
+    // Getter and setter for platoon
+    public Platoon getPlatoon() {return platoon;}
+    public void setPlatoon(Platoon platoon) {this.platoon = platoon;}
 }

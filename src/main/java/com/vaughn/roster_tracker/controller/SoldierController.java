@@ -55,4 +55,20 @@ public class SoldierController {
         }
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/soldiers/by-mos/{mos}")
+    public List<Soldier> getSoldiersByMos(@PathVariable String mos) {
+        return service.getSoldierByMos(mos);
+    }
+
+    @PutMapping("/soldiers/{soldierId}/platoon/{platoonId}")
+    public ResponseEntity<Soldier> assignToPlatoon(
+            @PathVariable Long soldierId,
+            @PathVariable Long platoonId) {
+        Soldier updated = service.assignToPlatoon(soldierId, platoonId);
+        if (updated == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updated);
+    }
 }
